@@ -26,13 +26,6 @@ DTB_LIST := $(dtb-y)
 endif
 DTB_OBJS := $(addprefix $(obj)/dts/,$(DTB_LIST))
 
-DTBO_NAMES := $(subst $\",,$(CONFIG_BUILD_ARM64_DTB_OVERLAY_IMAGE_NAMES))
-ifneq ($(DTBO_NAMES),)
-DTB_LIST += $(addsuffix .dtbo,$(DTBO_NAMES))
-endif
-
-targets += $(DTB_LIST)
-
 $(obj)/Image: vmlinux FORCE
 	$(call if_changed,objcopy)
 
@@ -57,6 +50,12 @@ $(obj)/Image.lzo: $(obj)/Image FORCE
 $(obj)/Image.gz-dtb: $(obj)/Image.gz $(DTB_OBJS) FORCE
 	$(call if_changed,cat)
 
+<<<<<<< HEAD
+=======
+$(obj)/mtk.dtb: $(DTB_OBJS) FORCE
+	$(call if_changed,cat)
+
+>>>>>>> 32fb73345b9f (kernel-4.19: Add DTB/DTO handling and DrvGen back into kernel)
 install:
 	$(CONFIG_SHELL) $(srctree)/$(src)/install.sh $(KERNELRELEASE) \
 	$(obj)/Image System.map "$(INSTALL_PATH)"
