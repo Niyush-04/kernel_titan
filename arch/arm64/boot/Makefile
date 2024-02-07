@@ -56,12 +56,9 @@ $(obj)/Image.lzo: $(obj)/Image FORCE
 $(obj)/Image.gz-dtb: $(obj)/Image.gz $(DTB_OBJS) FORCE
 	$(call if_changed,cat)
 
-<<<<<<< HEAD
-=======
 $(obj)/mtk.dtb: $(DTB_OBJS) FORCE
 	$(call if_changed,cat)
 
->>>>>>> 32fb73345b9f (kernel-4.19: Add DTB/DTO handling and DrvGen back into kernel)
 install:
 	$(CONFIG_SHELL) $(srctree)/$(src)/install.sh $(KERNELRELEASE) \
 	$(obj)/Image System.map "$(INSTALL_PATH)"
